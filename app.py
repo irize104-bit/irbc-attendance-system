@@ -114,12 +114,15 @@ def daily():
 # Monthly Report
 @app.route('/monthly')
 def monthly():
+    from datetime import datetime
 
-    current_month = date.today().strftime("%Y-%m")
-     records = Attendance.query.filter(Attendance.status != None).all()
+    month = datetime.now().strftime("%Y-%m")
 
-    return render_template("monthly_report.html", records=records)
+    records = Attendance.query.filter(
+        Attendance.status != None
+    ).all()
 
+    return render_template("monthly.html", records=records)
 
 # Delete Attendance
 @app.route('/delete/<int:id>')

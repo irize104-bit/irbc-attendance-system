@@ -1,0 +1,42 @@
+<div style="text-align:center;">
+
+  <div style="text-align:center;margin-bottom:20px;">
+<img src="{{ url_for('static', filename='logo.png') }}" width="120">
+</div>
+<h2>Edit Attendance</h2>
+
+<form method="POST">
+
+<p><b>Name:</b> {{record.name}}</p>
+
+<label>Status</label>
+
+<select name="status">
+
+<option value="Present"
+{% if record.status == "Present" %}selected{% endif %}>
+Present
+</option>
+
+<option value="Absent"
+{% if record.status == "Absent" %}selected{% endif %}>
+Absent
+</option>
+
+</select>
+
+<br><br>
+
+<label>Reason</label>
+
+<input type="text" name="reason" value="{{record.reason}}">
+
+<br><br>
+
+<button type="submit">Update</button>
+
+</form>
+
+<br>
+
+<a href="/daily">Back</a>

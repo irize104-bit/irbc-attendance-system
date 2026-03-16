@@ -156,9 +156,9 @@ def edit(id):
 @app.route('/download')
 def download():
 
-records = Attendance.query.filter(Attendance.status != None).all()
+     records = Attendance.query.filter(Attendance.status != None).all()
 
-    data = []
+      data = []
 
     for r in records:
 

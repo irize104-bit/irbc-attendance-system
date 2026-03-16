@@ -116,7 +116,7 @@ def daily():
 def monthly():
 
     current_month = date.today().strftime("%Y-%m")
-    records = Attendance.query.filter(Attendance.date.startswith(current_month)).all()
+     records = Attendance.query.filter(Attendance.status != None).all()
 
     return render_template("monthly_report.html", records=records)
 
@@ -155,7 +155,7 @@ def edit(id):
 @app.route('/download')
 def download():
 
-    records = Attendance.query.all()
+records = Attendance.query.filter(Attendance.status != None).all()
 
     data = []
 

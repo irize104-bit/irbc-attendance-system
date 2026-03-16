@@ -115,24 +115,28 @@ def daily():
 # Monthly Report
 @app.route('/monthly')
 def monthly():
+    try:
 
-    records = Attendance.query.filter(Attendance.status != None).all()
+        records = Attendance.query.all()
 
-    data = []
+        data = []
 
-    for r in records:
+        for r in records:
+            ot = Overtime.query.filter_by(name=r.name, date=r.date).first()
 
-        ot = Overtime.query.filter_by(name=r.name, date=r.date).first()
+            data.append({
+                "name": r.name,
+                "status": r.status,
+                "reason": r.reason,
+                "overtime": ot.hours if ot else 0,
+                "date": r.date
+            })
 
-        data.append({
-            "name": r.name,
-            "status": r.status,
-            "reason": r.reason,
-            "overtime": ot.hours if ot else 0,
-            "date": r.date
-        })
+        return render_template("monthly_report.html", records=data)
 
-    return render_template("monthly_report.html", records=data)
+    except Exception as e:
+        return str(e)
+
 
 
 # Delete Attendance

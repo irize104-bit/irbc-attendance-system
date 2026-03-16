@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Daily Attendance</title>
+<div style="text-align:center;">
+
+  <div style="text-align:center;margin-bottom:20px;">
+<img src="{{ url_for('static', filename='logo.png') }}" width="120">
+</div>
+
+<style>
+
+body{
+background:#f4f5f7;
+font-family:Arial;
+}
+
+.container{
+width:900px;
+margin:auto;
+margin-top:40px;
+background:#f2f2f2;
+padding:30px;
+border-radius:10px;
+text-align:center;
+}
+
+h2{
+color:#2c4a7a;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:18px;
+}
+
+th{
+background:#2c4a7a;
+color:white;
+padding:12px;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #ccc;
+}
+
+tr:nth-child(even){
+background:#f9f9f9;
+}
+
+.edit-btn{
+background:orange;
+color:white;
+border:none;
+padding:6px 15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.delete-btn{
+background:red;
+color:white;
+border:none;
+padding:6px 15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.back-btn{
+background:#007bff;
+color:white;
+border:none;
+padding:10px 25px;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.back-btn:hover{
+background:#0056b3;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Daily Attendance</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Status</th>
+<th>Reason</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+
+{% for r in records %}
+
+<tr>
+
+<td>{{ r.name }}</td>
+<td>{{ r.status }}</td>
+<td>{{ r.reason }}</td>
+<td>{{ r.date }}</td>
+
+<td>
+
+<a href="/edit/{{r.id}}">
+<button class="edit-btn">Edit</button>
+</a>
+
+<a href="/delete/{{r.id}}">
+<button class="delete-btn">Delete</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<a href="/"><button class="back-btn">Back</button></a>
+
+</div>
+
+</body>
+</html>

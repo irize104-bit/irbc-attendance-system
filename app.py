@@ -125,6 +125,7 @@ def monthly():
             ot = Overtime.query.filter_by(name=r.name, date=r.date).first()
 
             data.append({
+                "id": r.id,
                 "name": r.name,
                 "status": r.status,
                 "reason": r.reason,

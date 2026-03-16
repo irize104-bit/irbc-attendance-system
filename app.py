@@ -153,12 +153,13 @@ def edit(id):
 
 
 # Excel Download
+# Excel Download
 @app.route('/download')
 def download():
 
-     records = Attendance.query.filter(Attendance.status != None).all()
+    records = Attendance.query.filter(Attendance.status != None).all()
 
-      data = []
+    data = []
 
     for r in records:
 

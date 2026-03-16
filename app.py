@@ -118,9 +118,7 @@ def monthly():
 
     month = datetime.now().strftime("%Y-%m")
 
-    records = Attendance.query.filter(
-        Attendance.status != None
-    ).all()
+    records = Attendance.query.filter( Attendance.status != None).all()
 
     return render_template("monthly.html", records=records)
 

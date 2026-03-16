@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<center>
+<h2>Monthly Attendance</h2>
+<div style="text-align:center;">
+
+  <div style="text-align:center;margin-bottom:20px;">
+<img src="{{ url_for('static', filename='logo.png') }}" width="120">
+</div>
+
+<br>
+
+<a href="/download">
+<button style="background:green;color:white;border:none;padding:8px 15px;">
+Download Excel
+</button>
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="8" style="border-collapse:collapse;width:100%;text-align:center;">
+
+<tr style="background:#2c4a7a;color:white;">
+<th>Name</th>
+<th>Status</th>
+<th>Reason</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+
+{% for r in records %}
+
+<tr>
+
+<td>{{ r.name }}</td>
+
+<td 
+{% if r.status == "Present" %}
+style="color:green;font-weight:bold;"
+{% else %}
+style="color:red;font-weight:bold;"
+{% endif %}
+>
+{{ r.status }}
+</td>
+
+<td>{{ r.reason }}</td>
+
+<td>{{ r.date }}</td>
+
+<td>
+
+<a href="/edit/{{r.id}}">
+<button style="background:orange;color:white;border:none;padding:5px 10px;">
+Edit
+</button>
+</a>
+
+<a href="/delete/{{r.id}}">
+<button style="background:red;color:white;border:none;padding:5px 10px;">
+Delete
+</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">
+<button style="padding:8px 15px;">Back</button>
+</a>
+</center>
+</html>

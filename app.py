@@ -132,7 +132,7 @@ def monthly():
             "date": r.date
         })
 
-    return render_template("monthly.html", records=data)
+    return render_template("monthly_report.html", records=data)
 
 
 # Delete Attendance

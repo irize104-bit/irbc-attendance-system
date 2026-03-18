@@ -34,6 +34,19 @@ class Overtime(db.Model):
 def index():
     employees = ["David", "Dhanu", "Karame", "Mukilan"]
     return render_template("index.html", employees=employees)
+    
+@app.route('/add_employee', methods=['GET', 'POST'])
+def add_employee():
+    if request.method == 'POST':
+        name = request.form['name']
+
+        new_emp = Employee(name=name)
+        db.session.add(new_emp)
+        db.session.commit()
+
+        return redirect('/')  # go back to main page
+
+    return render_template('add_employee.html')
 
 
 # Save Attendance

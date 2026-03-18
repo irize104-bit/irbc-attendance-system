@@ -146,7 +146,7 @@ def daily():
     today = str(date.today())
     records = Attendance.query.filter_by(date=today).all()
 
-    return render_template('daily.html', records=records)
+    return render_template('daily_report.html', records=records)
 
 
 

@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 import pandas as pd
 import io
+import os
 
 app = Flask(__name__)
 
@@ -35,9 +36,11 @@ class Employee(db.Model):
 
 # Home Page
 @app.route('/')
+@app.route('/')
 def index():
-    employees = ["David", "Dhanu", "Karame", "Mukilan"]
+    employees = Employee.query.all()
     return render_template("index.html", employees=employees)
+
     
 @app.route('/add_employee', methods=['GET', 'POST'])
 def add_employee():

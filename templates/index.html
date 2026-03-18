@@ -157,9 +157,8 @@ rowColor.style.background = "#e6ffe6";
 <tr id="row_{{loop.index}}">
 
 <td>
-{{ emp }}
-<input type="hidden" name="name[]" value="{{ emp }}">
-
+{{ emp.name }}
+<input type="hidden" name="name[]" value="{{ emp.name }}">
 </td>
 
 <td>
@@ -202,6 +201,7 @@ Absent
 </form>
 
 <br><br>
+<a href="/add_employee"><button class="report-btn">Add Employee</button></a>
 
 <a href="/daily"><button class="report-btn">Daily Report</button></a>
 <a href="/monthly"><button class="report-btn">Monthly Report</button></a>

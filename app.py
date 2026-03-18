@@ -90,13 +90,30 @@ def save():
 
 
  # Overtime Page
-@app.route('/overtime')
+@app.route('/overtime', methods=['GET', 'POST'])
 def overtime():
 
-    employees = ["David", "Dhanu", "Karame", "Mukilan"]
+    today = date.today()
 
-    return render_template("overtime.html", employees=employees)
+    # 👇 GET TODAY ATTENDANCE
+    records = Attendance.query.filter_by(date=today).all()
 
+    if request.method == 'POST':
+        for r in records:
+            hours = request.form.get(f"ot_{r.name}")
+
+            if hours:
+                ot = Overtime(
+                    name=r.name,
+                    date=today,
+                    hours=float(hours)
+                )
+                db.session.add(ot)
+
+        db.session.commit()
+        return redirect('/')
+
+    return render_template('overtime.html', records=records)
 
 # Save Overtime
 @app.route('/save_overtime', methods=['POST'])

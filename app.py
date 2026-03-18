@@ -170,6 +170,14 @@ def delete(id):
     db.session.commit()
 
     return redirect('/daily')
+    
+@app.route('/delete_employee/<int:id>')
+def delete_employee(id):
+    emp = Employee.query.get_or_404(id)
+    db.session.delete(emp)
+    db.session.commit()
+    return redirect('/')
+
 
 
 # Edit Attendance

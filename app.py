@@ -233,7 +233,8 @@ def download():
         download_name="attendance_report.xlsx",
         as_attachment=True
     )
-
+    
+    db = SQLAlchemy(app)
 # Create database tables
 with app.app_context():
     db.create_all()

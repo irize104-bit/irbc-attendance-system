@@ -35,7 +35,7 @@ class Employee(db.Model):
 
 
 # Home Page
-@app.route('/')
+
 @app.route('/')
 def index():
     employees = Employee.query.all()

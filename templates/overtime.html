@@ -48,21 +48,20 @@ font-size:16px;
 <th>Name</th>
 <th>Overtime (Hours)</th>
 </tr>
-
 {% for emp in employees %}
 <tr>
 
 <td>
 {{ emp }}
-<input type="hidden" name="name" value="{{ emp }}">
 </td>
 
 <td>
-<input type="number" name="hours" step="0.5" placeholder="Ex: 1.5">
+<input type="number" name="ot_{{ emp }}" step="0.5" placeholder="Ex: 1.5">
 </td>
 
 </tr>
 {% endfor %}
+
 
 </table>
 

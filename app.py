@@ -145,10 +145,11 @@ def daily():
     today = str(date.today())
     records = Attendance.query.filter_by(date=today).all()
 
-    return render_template("daily_report.html", records=records)
+   employees = [r.name for r in records]
+return render_template('overtime.html', employees=employees)
 
 
-# Monthly Report
+
 # Monthly Report
 @app.route('/monthly')
 def monthly():

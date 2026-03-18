@@ -27,6 +27,10 @@ class Overtime(db.Model):
     name = db.Column(db.String(100))
     hours = db.Column(db.Float)
     date = db.Column(db.String(20))
+class Employee(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    
 
 
 # Home Page

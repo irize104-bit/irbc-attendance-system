@@ -84,18 +84,12 @@ def save():
 
     return redirect('/daily')
 
-
-
-
-
-
- # Overtime Page
+# Overtime Page
 @app.route('/overtime', methods=['GET', 'POST'])
 def overtime():
 
-    today = date.today()
+    today = str(date.today())
 
-    # 👇 GET TODAY ATTENDANCE
     records = Attendance.query.filter_by(date=today).all()
 
     if request.method == 'POST':
@@ -103,17 +97,24 @@ def overtime():
             hours = request.form.get(f"ot_{r.name}")
 
             if hours:
-                ot = Overtime(
-                    name=r.name,
-                    date=today,
-                    hours=float(hours)
-                )
-                db.session.add(ot)
+                existing = Overtime.query.filter_by(name=r.name, date=today).first()
+
+                if existing:
+                    existing.hours = float(hours)
+                else:
+                    ot = Overtime(
+                        name=r.name,
+                        date=today,
+                        hours=float(hours)
+                    )
+                    db.session.add(ot)
 
         db.session.commit()
         return redirect('/')
 
-    return render_template('overtime.html', records=records)
+    employees = [r.name for r in records]
+    return render_template('overtime.html', employees=employees)
+
 
 # Save Overtime
 @app.route('/save_overtime', methods=['POST'])
@@ -145,8 +146,8 @@ def daily():
     today = str(date.today())
     records = Attendance.query.filter_by(date=today).all()
 
-   employees = [r.name for r in records]
-return render_template('overtime.html', employees=employees)
+    return render_template('daily.html', records=records)
+
 
 
 

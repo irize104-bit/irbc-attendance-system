@@ -159,7 +159,14 @@ rowColor.style.background = "#e6ffe6";
 <td>
 {{ emp.name }}
 <input type="hidden" name="name[]" value="{{ emp.name }}">
+
+<a href="/delete_employee/{{ emp.id }}" 
+   onclick="return confirm('Delete this employee?')">
+   ❌
+</a>
+
 </td>
+
 
 <td>
 

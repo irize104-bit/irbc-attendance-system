@@ -139,11 +139,19 @@ rowColor.style.background = "#e6ffe6";
 
 <h2>IRBC EMPLOYEE ATTENDANCE</h2>
 
+  
+
 {% if msg %}
 <div class="success">✔ {{msg}}</div>
 {% endif %}
 
 <form action="/save" method="POST">
+  <div style="margin-bottom:15px;">
+    <label><b>Site Entry:</b></label><br>
+    <input type="text" name="site_entry" placeholder="Enter Site Name or Location"
+           style="padding:8px; width:250px; border-radius:5px; border:1px solid #ccc;" required>
+</div>
+  
 
 <table>
 

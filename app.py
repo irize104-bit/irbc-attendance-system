@@ -59,7 +59,8 @@ def add_employee():
 # Save Attendance
 @app.route('/save', methods=['POST'])
 def save():
-
+    site_entry = request.form.get('site_entry')
+    print(site_entry)
     names = request.form.getlist('name[]')
     reasons = request.form.getlist('reason[]')
 
